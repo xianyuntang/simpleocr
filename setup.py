@@ -9,7 +9,7 @@ setuptools.setup(
     long_description='',
     long_description_content_type="text/markdown",
     url="https://github.com/pypa/sampleproject",
-    packages=['quickocr'],
+    packages=setuptools.find_packages(include=['quickocr']),
 
     classifiers=[
         "Programming Language :: Python :: 3",
