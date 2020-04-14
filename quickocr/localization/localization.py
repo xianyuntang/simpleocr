@@ -3,6 +3,10 @@ from tensorflow.python.keras.layers import MaxPooling2D, Conv2D, \
     BatchNormalization, UpSampling2D, concatenate, Lambda, ZeroPadding2D
 from tensorflow.python.keras.models import Model
 import math
+from tensorflow.python.keras import backend as K
+import os
+import numpy as np
+import cv2
 
 
 class VGGNetModel(Model):
@@ -393,10 +397,39 @@ def get_box(region_score, affinity_map, min_thresh=25, max_thresh=100000):
     return boxes
 
 
-if __name__ == '__main__':
-    import numpy as np
-    import cv2
+def get_text_localization(original_image: np.ndarray):
+    w = 1280
+    h = 768
+    K.clear_session()
+    K.set_learning_phase(0)
+    model = VGGNetModel()
+    model(np.random.random((1, h, w, 1)).astype(np.float32))
+    model.load_weights(os.path.join('.', 'quickocr', 'weights', 'localization_weights.h5'), by_name=True)
+    target_ratio_h = original_image.shape[0] / h
+    target_ratio_w = original_image.shape[1] / w
+    inference_image = original_image.copy()
+    inference_image = cv2.cvtColor(inference_image, cv2.COLOR_BGR2GRAY)
+    inference_image = inference_image / 255
+    inference_image = cv2.resize(inference_image, dsize=(w, h))
+    inference_image = np.expand_dims(inference_image, -1)
+    inference_image = np.expand_dims(inference_image, 0)
+    inference_image = inference_image.astype(np.float32)
 
+    score_text, score_link = model(inference_image)
+
+    bboxes = get_det_boxes(score_text.numpy(), score_link.numpy(), 0.35, 0.35)
+    bboxes = adjust_result_coordinates(bboxes, target_ratio_w, target_ratio_h)
+
+    # for bbox in bboxes:
+    #     bbox = np.reshape(bbox, newshape=(-1, 8)).astype(np.int)[0]
+    #     print(bbox)
+    #     clipped_image = original_image[bbox[1]:bbox[5], bbox[0]:bbox[4]]
+    #     original_image = cv2.rectangle(original_image, (bbox[0], bbox[1]), (bbox[4], bbox[5]), (255, 0, 0), 2, 1)
+
+    return bboxes
+
+
+if __name__ == '__main__':
     model = VGGNetModel()
     data = np.random.random((1, 768, 768, 3)).astype(np.float32)
     a, b = model(data)

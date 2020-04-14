@@ -16,5 +16,11 @@ setuptools.setup(
         "License :: OSI Approved :: Apache License 2.0",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.7',
+    install_requires=[
+        "opencv-python",
+        "tensorflow-gpu",
+        "requests"
+    ],
+
 )
