@@ -22,7 +22,12 @@ The reimplementation is based on CRNN model which RNN layer is replaced with sel
 ```
 $ pip install simpleocr
 ```
-
+or 
+```
+$ git clone https://github.com/xianyuntang/simpleocr
+$ cd simpleocr
+$ python setup.py install
+```
 # usage
 ```
 from simpleocr import ocr
