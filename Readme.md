@@ -1,5 +1,5 @@
-# simple-ocr library
-simple-ocr is a python OCR package for traditional chinese based on deep learning method.
+# simpleocr library
+simpleocr is a python OCR package for traditional chinese based on deep learning method.
 
 The library consists of text localization and text recognition.
 
@@ -20,13 +20,13 @@ The reimplementation is based on CRNN model which RNN layer is replaced with sel
 
 # installation
 ```
-$ pip install simple-ocr
+$ pip install simpleocr
 ```
 
 # usage
 ```
-from quickocr import quickocr
-quickocr.get_text(['image.jpg'])
+from simpleocr import ocr
+ocr.get_text(['image.jpg'])
 ```
 
 
