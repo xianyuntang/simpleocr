@@ -1,5 +1,5 @@
 # Simpleocr library
-simpleocr is a python OCR package for traditional chinese based on deep learning method.
+simpleocr is a python traditional chinese OCR package based on deep learning method.
 
 The library consists of text localization and text recognition.
 
