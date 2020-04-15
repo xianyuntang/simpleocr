@@ -1,15 +1,17 @@
 import setuptools
 
+long_description = open('Readme.md', 'r').read()
+
 setuptools.setup(
     name="simple-ocr",  #
-    version="0.0.3",
+    version="0.0.4",
     author="xt1800i",
     author_email="xt1800i@gmail.com",
-    description="A small example package",
-    long_description='',
+    description="A ocr tool for traditional chinese",
+    long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/xianyuntang/quickocr",
-    packages=setuptools.find_packages(include=['quickocr']),
+    url="https://github.com/xianyuntang/simple-ocr",
+    packages=setuptools.find_packages(include=['simple-ocr']),
 
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -23,6 +25,5 @@ setuptools.setup(
         "requests"
     ],
     include_package_data=True,
-
 
 )

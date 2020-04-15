@@ -20,7 +20,7 @@ The reimplementation is based on CRNN model which RNN layer is replaced with sel
 
 # installation
 ```
-$ pip install quickocr
+$ pip install simple-ocr
 ```
 
 # usage
@@ -33,3 +33,4 @@ quickocr.get_text(['image.jpg'])
 
 # TODO
 1. English support
+2. GPU support
