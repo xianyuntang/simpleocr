@@ -1,24 +1,24 @@
-# simpleocr library
+# Simpleocr library
 simpleocr is a python OCR package for traditional chinese based on deep learning method.
 
 The library consists of text localization and text recognition.
 
-## text localization
+## Text localization
 The model is the reimplementation of CRAFT(Character-Region Awareness For Text detection) by tensorflow.
 
 [paper](https://arxiv.org/abs/1904.01941) | [github](https://github.com/clovaai/CRAFT-pytorch)
  
-## text recognition
-The reimplementation is based on CRNN model which RNN layer is replaced with self-attention layer.
+## Text recognition
+The reimplementation is based on CRNN model that RNN layer is replaced with self-attention layer.
 
 ##### CRNN
 [paper](https://arxiv.org/abs/1707.03985)
 
-##### self attention
+##### Self attention
 
 [paper](https://arxiv.org/abs/1706.03762)
 
-# installation
+# Installation
 ```
 $ pip install simpleocr
 ```
@@ -28,7 +28,7 @@ $ git clone https://github.com/xianyuntang/simpleocr
 $ cd simpleocr
 $ python setup.py install
 ```
-# usage
+# Usage
 ```
 from simpleocr import ocr
 ocr.get_text(['image.jpg'])
