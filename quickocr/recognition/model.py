@@ -210,13 +210,13 @@ def load_charset(charset_file):
     return charset
 
 
-def get_text(image):
+def get_text(image: np.ndarray, weights=str, label=str):
     K.clear_session()
     K.set_learning_phase(0)
-    charset = load_charset(os.path.join('.', 'quickocr', 'weights', 'label.txt'))
+    charset = load_charset(label)
     ocr_model = VGGNetModel(output_size=len(charset) + 1)
     ocr_model(np.random.random(size=(1, 80, 32, 1)).astype(np.float32))
-    ocr_model.load_weights(os.path.join('.', 'quickocr', 'weights', 'recognition_weights.h5'), by_name=True)
+    ocr_model.load_weights(weights, by_name=True)
     height, width, depth = image.shape
     # 直的
     if height > width:

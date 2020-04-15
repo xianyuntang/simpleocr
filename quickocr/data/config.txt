@@ -1,0 +1,5 @@
+[localization]
+url = https://github.com/xianyuntang/quickocr/raw/master/quickocr/weights/localization_weights.h5
+
+[recognition]
+url = https://github.com/xianyuntang/quickocr/raw/master/quickocr/weights/recognition_weights.h5

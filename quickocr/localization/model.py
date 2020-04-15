@@ -397,14 +397,14 @@ def get_box(region_score, affinity_map, min_thresh=25, max_thresh=100000):
     return boxes
 
 
-def get_text_localization(original_image: np.ndarray):
+def get_text_localization(original_image: np.ndarray, weights: str):
     w = 1280
     h = 768
     K.clear_session()
     K.set_learning_phase(0)
     model = VGGNetModel()
     model(np.random.random((1, h, w, 1)).astype(np.float32))
-    model.load_weights(os.path.join('.', 'quickocr', 'weights', 'localization_weights.h5'), by_name=True)
+    model.load_weights(weights, by_name=True)
     target_ratio_h = original_image.shape[0] / h
     target_ratio_w = original_image.shape[1] / w
     inference_image = original_image.copy()
