@@ -1,7 +1,7 @@
 # simple-ocr library
 simple-ocr is a python OCR package for traditional chinese based on deep learning method.
 
-The library consist of text localization and text recognition.
+The library consists of text localization and text recognition.
 
 ## text localization
 The model is the reimplementation of CRAFT(Character-Region Awareness For Text detection) by tensorflow.
