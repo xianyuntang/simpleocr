@@ -3,7 +3,6 @@ import numpy as np
 import requests
 import os
 import cv2
-import tqdm
 from simpleocr.localization import model as localization_model
 from simpleocr.recognition import model as recognition_model
 
@@ -18,22 +17,18 @@ def get_text(images: list, text_only=False, dist_dir='./output'):
         print('download recognition_weights.h5')
         weights = requests.get(cfg.get('recognition', 'url'))
         with open(os.path.join(base_path, 'data', 'weights', 'recognition_weights.h5'), 'wb') as f:
-            for chunk in tqdm.tqdm(weights.iter_content(chunk_size=1024)):
-                if chunk:
-                    f.write(chunk)
-
+            f.write(weights.content)
     if not os.path.exists(os.path.join(base_path, 'data', 'weights', 'localization_weights.h5')):
         print('download localization_weights.h5')
         weights = requests.get(cfg.get('localization', 'url'))
         with open(os.path.join(base_path, 'data', 'weights', 'localization_weights.h5'), 'wb') as f:
-            for chunk in tqdm.tqdm(weights.iter_content(chunk_size=1024)):
-                if chunk:
-                    f.write(chunk)
+            f.write(weights.content)
 
     for image_path in images:
         original_image = cv2.imread(image_path)
-        bboxes = localization_model.get_text_localization(original_image, weights=os.path.join(base_path, 'data',
-                                                                                               'localization_weights.h5'))
+        bboxes = localization_model.get_text_localization(original_image,
+                                                          weights=os.path.join(base_path, 'data', 'weights',
+                                                                               'localization_weights.h5'))
         for index, bbox in enumerate(bboxes):
             filename = os.path.split(image_path)
             bbox = np.reshape(bbox, newshape=(-1, 8)).astype(np.int)[0]
@@ -44,7 +39,8 @@ def get_text(images: list, text_only=False, dist_dir='./output'):
                                                1)
                 cv2.imwrite(os.path.join(dist_dir, f'{filename}.jpg'), original_image)
             text = recognition_model.get_text(clipped_image,
-                                              weights=os.path.join(base_path, 'data', 'recognition_weights.h5'),
+                                              weights=os.path.join(base_path, 'data', 'weights',
+                                                                   'recognition_weights.h5'),
                                               label=os.path.join(base_path, 'data', 'label.txt'))
             with open(os.path.join(dist_dir, f'{filename}_{index}.txt'), 'w', encoding='utf-8') as f:
                 f.write(text)
