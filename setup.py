@@ -4,7 +4,7 @@ long_description = open('Readme.md', 'r').read()
 
 setuptools.setup(
     name="simpleocr",  #
-    version="0.0.8",
+    version="0.0.10",
     author="xt1800i",
     author_email="xt1800i@gmail.com",
     description="A ocr tool for traditional chinese",
@@ -22,7 +22,8 @@ setuptools.setup(
     install_requires=[
         "opencv-python",
         "tensorflow-cpu",
-        "requests"
+        "requests",
+        "tqdm"
     ],
     include_package_data=True,
 
