@@ -5,7 +5,6 @@ from tensorflow.python.keras.models import Model
 from tensorflow.python.keras import backend as K
 import cv2
 import numpy as np
-import os
 
 
 class SelfAttention(Layer):

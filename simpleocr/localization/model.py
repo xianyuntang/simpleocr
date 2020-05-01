@@ -4,7 +4,6 @@ from tensorflow.python.keras.layers import MaxPooling2D, Conv2D, \
 from tensorflow.python.keras.models import Model
 import math
 from tensorflow.python.keras import backend as K
-import os
 import numpy as np
 import cv2
 

@@ -4,8 +4,8 @@ import requests
 import os
 import cv2
 import tqdm
-from quickocr.localization import model as localization_model
-from quickocr.recognition import model as recognition_model
+from simpleocr.localization import model as localization_model
+from simpleocr.recognition import model as recognition_model
 
 
 def get_text(images: list, text_only=False, dist_dir='./output'):
