@@ -12,7 +12,8 @@ def get_text(images: list, text_only=False, dist_dir='./output'):
     cfg = ConfigParser()
     base_path = os.path.dirname(__file__)
     cfg.read_string(open(os.path.join(base_path, 'data', 'config.txt')).read())
-
+    if not os.path.isdir(os.path.join(base_path, 'data', 'weights')):
+        os.mkdir(os.path.join(base_path, 'data', 'weights'))
     if not os.path.exists(os.path.join(base_path, 'data', 'weights', 'recognition_weights.h5')):
         print('download recognition_weights.h5')
         weights = requests.get(cfg.get('recognition', 'url'))

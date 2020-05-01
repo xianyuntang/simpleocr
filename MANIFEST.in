@@ -3,4 +3,4 @@ include *.md
 recursive-include simpleocr/localization *
 recursive-include simpleocr/recognition *
 recursive-include simpleocr/data *
-recursive-exclude simpleocr/data *.h5
+recursive-exclude simpleocr/data/weights *.h5
