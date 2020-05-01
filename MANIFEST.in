@@ -1,6 +1,6 @@
 include *.txt
 include *.md
-recursive-include quickocr/localization *
-recursive-include quickocr/recognition *
-recursive-include quickocr/data *
-recursive-exclude quickocr/data *.h5
+recursive-include simpleocr/localization *
+recursive-include simpleocr/recognition *
+recursive-include simpleocr/data *
+recursive-exclude simpleocr/data *.h5
