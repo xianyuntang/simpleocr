@@ -1,0 +1,2 @@
+simpleocr/data/weights/localization_weights.h5 filter=lfs diff=lfs merge=lfs -text
+simpleocr/data/weights/recognition_weights.h5 filter=lfs diff=lfs merge=lfs -text
