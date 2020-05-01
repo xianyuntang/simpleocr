@@ -4,7 +4,7 @@ long_description = open('Readme.md', 'r').read()
 
 setuptools.setup(
     name="simpleocr",  #
-    version="0.0.13",
+    version="0.0.14",
     author="xt1800i",
     author_email="xt1800i@gmail.com",
     description="A ocr tool for traditional chinese",

@@ -17,17 +17,13 @@ def get_text(images: list, text_only=False, dist_dir='./output'):
         print('download recognition_weights.h5')
         weights = requests.get(cfg.get('recognition', 'url'))
         with open(os.path.join(base_path, 'data', 'recognition_weights.h5'), 'wb') as f:
-            for chunk in tqdm.tqdm(weights.iter_content(chunk_size=1024)):
-                if chunk:
-                    f.write(chunk)
+            f.write(weights.content)
 
     if not os.path.exists(os.path.join(base_path, 'data', 'localization_weights.h5')):
         print('download localization_weights.h5')
         weights = requests.get(cfg.get('localization', 'url'))
         with open(os.path.join(base_path, 'data', 'localization_weights.h5'), 'wb') as f:
-            for chunk in tqdm.tqdm(weights.iter_content(chunk_size=1024)):
-                if chunk:
-                    f.write(chunk)
+            f.write(weights.content)
 
     for image_path in images:
         original_image = cv2.imread(image_path)
