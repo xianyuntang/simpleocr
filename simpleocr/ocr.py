@@ -24,9 +24,9 @@ def get_text(images: list, text_only=False, dist_dir='./output'):
         print('download localization_weights.h5')
         weights = requests.get(cfg.get('localization', 'url'))
         with open(os.path.join(base_path, 'data', 'localization_weights.h5'), 'wb') as f:
-
             for content in tqdm.tqdm(weights.iter_content()):
                 f.write(content)
+
     for image_path in images:
         original_image = cv2.imread(image_path)
         bboxes = localization_model.get_text_localization(original_image, weights=os.path.join(base_path, 'data',
