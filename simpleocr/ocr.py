@@ -13,17 +13,21 @@ def get_text(images: list, text_only=False, dist_dir='./output'):
     base_path = os.path.dirname(__file__)
     cfg.read_string(open(os.path.join(base_path, 'data', 'config.txt')).read())
 
-    if not os.path.exists(os.path.join(base_path, 'data', 'recognition_weights.h5')):
+    if not os.path.exists(os.path.join(base_path, 'data', 'weights', 'recognition_weights.h5')):
         print('download recognition_weights.h5')
         weights = requests.get(cfg.get('recognition', 'url'))
-        with open(os.path.join(base_path, 'data', 'recognition_weights.h5'), 'wb') as f:
-            f.write(weights.content)
+        with open(os.path.join(base_path, 'data', 'weights', 'recognition_weights.h5'), 'wb') as f:
+            for chunk in tqdm.tqdm(weights.iter_content(chunk_size=1024)):
+                if chunk:
+                    f.write(chunk)
 
-    if not os.path.exists(os.path.join(base_path, 'data', 'localization_weights.h5')):
+    if not os.path.exists(os.path.join(base_path, 'data', 'weights', 'localization_weights.h5')):
         print('download localization_weights.h5')
         weights = requests.get(cfg.get('localization', 'url'))
-        with open(os.path.join(base_path, 'data', 'localization_weights.h5'), 'wb') as f:
-            f.write(weights.content)
+        with open(os.path.join(base_path, 'data', 'weights', 'localization_weights.h5'), 'wb') as f:
+            for chunk in tqdm.tqdm(weights.iter_content(chunk_size=1024)):
+                if chunk:
+                    f.write(chunk)
 
     for image_path in images:
         original_image = cv2.imread(image_path)
